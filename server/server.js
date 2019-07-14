@@ -14,4 +14,7 @@ app.use(express.static(publicPath));
 
 server.listen(port, () => console.log(`Server has been start on port ${port}`));
 
-io.on("connection", () => console.log("io connection"));
+io.on("connection", socket => {
+	console.log("io connection");
+	socket.on("createMessage", data => console.log("createMessage", data));
+});
