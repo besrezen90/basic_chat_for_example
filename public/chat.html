@@ -25,16 +25,27 @@
 					</a>
 				</div>
 				<div class="chat-messages">
-					<div class="message" v-for="m in 10" :class="{'owner': m === 3}">
-						<div class="message-content z-depth-1">Message {{ m }}</div>
-					</div>
+					<chat-message v-for="m in messages" :message="m"> </chat-message>
 				</div>
 			</div>
 			<div class="actions">
 				<div class="input-field">
-					<input type="text" placeholder="Введите Ваше сообщение" />
+					<input
+						type="text"
+						v-model.trim="message"
+						autofocus
+						autocomplete="false"
+						placeholder="Введите Ваше сообщение"
+						@keydown.enter="sendMessage"
+					/>
 				</div>
-				<button class="btn">Отправить</button>
+				<button
+					class="btn"
+					@click="sendMessage"
+					:disabled="message.length === 0"
+				>
+					Отправить
+				</button>
 			</div>
 		</div>
 		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
