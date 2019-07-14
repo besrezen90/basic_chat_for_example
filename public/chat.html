@@ -9,10 +9,37 @@
 			rel="stylesheet"
 			href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
 		/>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+		<link rel="stylesheet" href="style.css" />
 	</head>
 	<body>
-		Чат
+		<div id="app">
+			<div class="chat">
+				<div class="chat-users collection">
+					<a
+						href="#"
+						class="collection-item"
+						v-for="user in 3"
+						:class="{'active': user === 1}"
+					>
+						User: {{ user }}
+					</a>
+				</div>
+				<div class="chat-messages">
+					<div class="message" v-for="m in 10" :class="{'owner': m === 3}">
+						<div class="message-content z-depth-1">Message {{ m }}</div>
+					</div>
+				</div>
+			</div>
+			<div class="actions">
+				<div class="input-field">
+					<input type="text" placeholder="Введите Ваше сообщение" />
+				</div>
+				<button class="btn">Отправить</button>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 		<script src="socket.io/socket.io.js"></script>
+		<script src="app.js"></script>
 	</body>
 </html>
