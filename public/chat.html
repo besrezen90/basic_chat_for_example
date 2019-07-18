@@ -1,56 +1,42 @@
 <!DOCTYPE html>
 <html lang="ru">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-		<title>Hi!Chat</title>
-		<link
-			rel="stylesheet"
-			href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
-		/>
-		<link rel="stylesheet" href="style.css" />
-	</head>
-	<body>
-		<div id="app">
-			<div class="chat">
-				<div class="chat-users collection">
-					<a
-						href="#"
-						class="collection-item"
-						v-for="user in 3"
-						:class="{'active': user === 1}"
-					>
-						User: {{ user }}
-					</a>
-				</div>
-				<div class="chat-messages">
-					<chat-message v-for="m in messages" :message="m"> </chat-message>
-				</div>
-			</div>
-			<div class="actions">
-				<div class="input-field">
-					<input
-						type="text"
-						v-model.trim="message"
-						autofocus
-						autocomplete="false"
-						placeholder="Введите Ваше сообщение"
-						@keydown.enter="sendMessage"
-					/>
-				</div>
-				<button
-					class="btn"
-					@click="sendMessage"
-					:disabled="message.length === 0"
-				>
-					Отправить
-				</button>
-			</div>
-		</div>
-		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-		<script src="socket.io/socket.io.js"></script>
-		<script src="app.js"></script>
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Hi!Chat</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <div class="chat">
+        <div class="chat-users collection">
+          <a href="#" class="collection-item" v-for="user in 3" :class="{'active': user === 1}"> User: {{ user }} </a>
+        </div>
+        <div class="chat-messages">
+          <chat-message v-for="m in messages" :message="m"> </chat-message>
+        </div>
+      </div>
+      <div class="actions">
+        <div class="input-field">
+          <input
+            type="text"
+            v-model.trim="message"
+            autofocus
+            autocomplete="false"
+            placeholder="Введите Ваше сообщение"
+            @keydown.enter="sendMessage"
+          />
+        </div>
+        <button class="btn" @click="sendMessage" :disabled="message.length === 0">
+          Отправить
+        </button>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="socket.io/socket.io.js"></script>
+    <script src="app.js"></script>
+  </body>
 </html>

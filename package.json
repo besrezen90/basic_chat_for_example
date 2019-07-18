@@ -1,20 +1,20 @@
 {
-	"name": "react_express_socetio_chat",
-	"version": "0.0.1",
-	"description": "",
-	"main": "index.js",
-	"scripts": {
-		"dev": "nodemon server/server",
-		"start": "node server/server"
-	},
-	"keywords": [],
-	"author": "Alex <besrezen90@mail.ru>",
-	"license": "ISC",
-	"dependencies": {
-		"express": "^4.17.1",
-		"socket.io": "^2.2.0"
-	},
-	"devDependencies": {
-		"nodemon": "^1.19.1"
-	}
+  "name": "react_express_socetio_chat",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon server/server",
+    "start": "node server/server"
+  },
+  "keywords": [],
+  "author": "Alex <besrezen90@mail.ru>",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^2.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  }
 }
