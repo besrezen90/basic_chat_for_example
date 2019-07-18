@@ -15,7 +15,7 @@
           <a href="#" class="collection-item" v-for="user in 3" :class="{'active': user === 1}"> User: {{ user }} </a>
         </div>
         <div class="chat-messages">
-          <chat-message v-for="m in messages" :message="m"> </chat-message>
+          <chat-message v-for="(m, idx) in messages" :message="m" :user="user" :key="m.idx"> </chat-message>
         </div>
       </div>
       <div class="actions">
