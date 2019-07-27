@@ -26,14 +26,43 @@ io.on("connection", socket => {
     }
     callback({ userId: socket.id });
 
+    socket.join(user.room);
+
+    users.add(socket.id, user.name, user.room);
+
+    /* Только мне */
     socket.emit("message:new", message("Admin", `Welcome, ${user.name}!`));
+
+    console.log(user);
+    /* Всем пользовалетелям кроме меня */
+    socket.broadcast
+      .to(user.room)
+      .emit("message:new", message("Admin", `${user.name} joined!`));
   });
+
   socket.on("message:create", (data, callback) => {
     if (!data) {
       callback(`Message can't be empty`);
     } else {
-      io.emit("message:new", message(data.name, data.text, data.id));
+      const user = users.get(socket.id);
+      if (user) {
+        /* Всем пользовалетелям */
+        io.to(user.room).emit(
+          "message:new",
+          message(data.name, data.text, data.id)
+        );
+      }
       callback();
+    }
+  });
+
+  socket.on("disconnect", () => {
+    const user = users.remove(socket.id);
+    if (user) {
+      io.to(user.room).emit(
+        "message:new",
+        message("Admin", `${user.name} disconnected`)
+      );
     }
   });
 });
