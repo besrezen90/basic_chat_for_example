@@ -5,17 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Hi!Chat</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div id="app">
       <div class="chat">
         <div class="chat-users collection">
-          <a href="#" class="collection-item" v-for="user in 3" :class="{'active': user === 1}"> User: {{ user }} </a>
+          <a
+            href="#"
+            class="collection-item"
+            v-for="u in users"
+            :class="{'active': u.id === user.id}"
+          >
+            {{ u.name }}
+          </a>
         </div>
         <div class="chat-messages">
-          <chat-message v-for="(m, idx) in messages" :message="m" :user="user" :key="m.idx"> </chat-message>
+          <chat-message
+            v-for="(m, idx) in messages"
+            :message="m"
+            :user="user"
+            :key="m.idx"
+          >
+          </chat-message>
         </div>
       </div>
       <div class="actions">
@@ -29,7 +45,11 @@
             @keydown.enter="sendMessage"
           />
         </div>
-        <button class="btn" @click="sendMessage" :disabled="message.length === 0">
+        <button
+          class="btn"
+          @click="sendMessage"
+          :disabled="message.length === 0"
+        >
           Отправить
         </button>
       </div>

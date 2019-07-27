@@ -28,8 +28,10 @@ io.on("connection", socket => {
 
     socket.join(user.room);
 
+    users.remove(socket.id);
     users.add(socket.id, user.name, user.room);
 
+    io.to(user.room).emit("users:update", users.getByRoom(user.room));
     /* Только мне */
     socket.emit("message:new", message("Admin", `Welcome, ${user.name}!`));
 
@@ -59,6 +61,7 @@ io.on("connection", socket => {
   socket.on("disconnect", () => {
     const user = users.remove(socket.id);
     if (user) {
+      io.to(user.room).emit("users:update", users.getByRoom(user.room));
       io.to(user.room).emit(
         "message:new",
         message("Admin", `${user.name} disconnected`)
